@@ -1,0 +1,60 @@
+﻿@using DevExtreme.AspNet.Mvc;
+@model IEnumerable<CheckApiWeb.Models.ModelRoot.Data>
+@{
+    ViewData["Title"] = "Home Page";
+}
+<link href="~/css/devextreme/dx.light.css" rel="stylesheet" />
+<script src="~/js/devextreme/jquery.js"></script>
+<script src="~/js/devextreme/dx.all.js"></script>
+<script src="~/js/devextreme/aspnet/dx.aspnet.mvc.js"></script>
+<script src="~/js/devextreme/aspnet/dx.aspnet.data.js"></script>
+<br />
+<p style="font-size:small;font-family:'Times New Roman', Times, serif">
+@*
+    @using (Html.BeginForm())
+
+    {
+
+    <p style="font-size:small">
+
+        Store &nbsp;: @Html.TextBox("Store") &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Mã DH &nbsp; : @Html.TextBox("orderNo")&nbsp;&nbsp; <input type="submit" value="Tìm kiếm" />
+
+    </p>
+
+    }*@
+    @using (Html.BeginForm())
+    {
+    <p style="font-size:small">
+        Store: <input type="text" name="Store" required />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        Mã DH: <input type="text" name="orderNo" required />&nbsp;&nbsp;
+        <input type="submit" value="Tìm kiếm" />
+    </p>
+    }
+
+    </p>
+<div class="text-center">
+        <table>
+        @(
+            Html.DevExtreme().DataGrid<CheckApiWeb.Models.ModelRoot.Data>()
+                                    .ID("gridContainer")
+                                        .ShowBorders(true)
+                                        .DataSource(Model)
+                                        .KeyExpr("ID")
+                                        .Columns(c =>
+                        {
+                            c.AddFor(m => m.AppCode);
+                            c.AddFor(m => m.OrderNo);
+                            c.AddFor(m => m.OrderTime);
+                            c.AddFor(m => m.DeliveryType);
+                            c.AddFor(m => m.CustNo);
+                            c.AddFor(m => m.CustName);
+                            c.AddFor(m => m.CustPhone);
+                            c.AddFor(m => m.CustAddress);
+                            c.AddFor(m => m.CustNote);
+                            c.AddFor(m => m.TotalAmount);
+                            c.AddFor(m => m.PaymentAmount);
+                        })
+        )
+</table>
+      
+</div>
